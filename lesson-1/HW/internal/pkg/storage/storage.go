@@ -49,8 +49,5 @@ func (storage Storage) GetKind(key string) string {
 	if _, err := strconv.ParseFloat(out, 64); err == nil {
 		return "D"
 	}
-	if _, err := strconv.Atoi(out); err == nil {
-		return "D"
-	}
 	return "S"
 }
