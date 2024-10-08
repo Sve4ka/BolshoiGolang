@@ -5,9 +5,15 @@ import (
 	"strconv"
 )
 
+type Value struct {
+	s    string
+	f    float64
+	kind string
+}
+
 type Storage struct {
-	innerString map[string]string
-	logger      *zap.Logger
+	storage map[string]Value
+	logger  *zap.Logger
 }
 
 func InitStorage() (Storage, error) {
@@ -18,39 +24,42 @@ func InitStorage() (Storage, error) {
 	defer logger.Sync()
 	logger.Info("storage initialized")
 	return Storage{
-		innerString: make(map[string]string),
-		logger:      logger,
+		storage: make(map[string]Value),
+		logger:  logger,
 	}, nil
 }
 
 func (storage Storage) Set(key, value string) {
 	defer storage.logger.Sync()
-	storage.innerString[key] = value
+	var val Value
+	val.s = value
+	if f, err := strconv.ParseFloat(value, 64); err == nil {
+		val.f = f
+		val.kind = "D"
+	} else {
+		val.kind = "S"
+	}
+
+	storage.storage[key] = val
 	storage.logger.Info("Set key value")
 }
 
 func (storage Storage) Get(key string) *string {
 	defer storage.logger.Sync()
-	out, ok := storage.innerString[key]
+	out, ok := storage.storage[key]
 	storage.logger.Info("Get key value")
 	if ok {
-		return &out
+		return &out.s
 	}
 	return nil
 }
 
 func (storage Storage) GetKind(key string) string {
 	defer storage.logger.Sync()
-	out, ok := storage.innerString[key]
+	out, ok := storage.storage[key]
 	storage.logger.Info("Get kind key value")
 	if !ok {
 		return "N"
 	}
-	if _, err := strconv.ParseFloat(out, 64); err == nil {
-		return "D"
-	}
-	if _, err := strconv.Atoi(out); err == nil {
-		return "D"
-	}
-	return "S"
+	return out.kind
 }
