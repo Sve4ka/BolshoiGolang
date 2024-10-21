@@ -1,0 +1,102 @@
+goos: windows
+goarch: amd64
+pkg: HW-pt1/internal/pkg/storage
+cpu: 11th Gen Intel(R) Core(TM) i5-1155G7 @ 2.50GHz
+BenchmarkInitStorage
+BenchmarkInitStorage/5
+BenchmarkInitStorage/5-8 	1000000000	         0.0001235 ns/op
+BenchmarkInitStorage/10
+BenchmarkInitStorage/10-8         	1000000000	         0.0005977 ns/op
+BenchmarkInitStorage/100
+BenchmarkInitStorage/100-8        	1000000000	         0.007895 ns/op
+BenchmarkInitStorage/500
+BenchmarkInitStorage/500-8        	1000000000	         0.04070 ns/op
+BenchmarkInitStorage/1000
+BenchmarkInitStorage/1000-8       	     346	   3210867 ns/op
+PASS
+
+goos: windows
+goarch: amd64
+pkg: HW-pt1/internal/pkg/storage
+cpu: 11th Gen Intel(R) Core(TM) i5-1155G7 @ 2.50GHz
+BenchmarkSet
+BenchmarkSet/5
+BenchmarkSet/5-8 	1000000000	         0.0000022 ns/op
+BenchmarkSet/10
+BenchmarkSet/10-8         	1000000000	         0.0000035 ns/op
+BenchmarkSet/100
+BenchmarkSet/100-8        	1000000000	         0.0000239 ns/op
+BenchmarkSet/1000
+BenchmarkSet/1000-8       	1000000000	         0.0001671 ns/op
+BenchmarkSet/10000
+BenchmarkSet/10000-8      	1000000000	         0.002309 ns/op
+BenchmarkSet/100000
+BenchmarkSet/100000-8     	1000000000	         0.02771 ns/op
+BenchmarkSet/1000000
+BenchmarkSet/1000000-8    	1000000000	         0.3424 ns/op
+PASS
+
+
+goos: windows
+goarch: amd64
+pkg: HW-pt1/internal/pkg/storage
+cpu: 11th Gen Intel(R) Core(TM) i5-1155G7 @ 2.50GHz
+BenchmarkGet
+BenchmarkGet/5
+BenchmarkGet/5-8 	1000000000	         0.0000004 ns/op
+BenchmarkGet/10
+BenchmarkGet/10-8         	1000000000	         0.0000006 ns/op
+BenchmarkGet/100
+BenchmarkGet/100-8        	1000000000	         0.0000058 ns/op
+BenchmarkGet/1000
+BenchmarkGet/1000-8       	1000000000	         0.0000329 ns/op
+BenchmarkGet/10000
+BenchmarkGet/10000-8      	1000000000	         0.0003227 ns/op
+BenchmarkGet/100000
+BenchmarkGet/100000-8     	1000000000	         0.005784 ns/op
+BenchmarkGet/1000000
+BenchmarkGet/1000000-8    	1000000000	         0.08734 ns/op
+PASS
+
+goos: windows
+goarch: amd64
+pkg: HW-pt1/internal/pkg/storage
+cpu: 11th Gen Intel(R) Core(TM) i5-1155G7 @ 2.50GHz
+BenchmarkGetKind
+BenchmarkGetKind/5
+BenchmarkGetKind/5-8 	1000000000	         0.0000005 ns/op
+BenchmarkGetKind/10
+BenchmarkGetKind/10-8         	1000000000	         0.0000009 ns/op
+BenchmarkGetKind/100
+BenchmarkGetKind/100-8        	1000000000	         0.0000071 ns/op
+BenchmarkGetKind/1000
+BenchmarkGetKind/1000-8       	1000000000	         0.0000557 ns/op
+BenchmarkGetKind/10000
+BenchmarkGetKind/10000-8      	1000000000	         0.0005688 ns/op
+BenchmarkGetKind/100000
+BenchmarkGetKind/100000-8     	1000000000	         0.004551 ns/op
+BenchmarkGetKind/1000000
+BenchmarkGetKind/1000000-8    	1000000000	         0.06875 ns/op
+PASS
+
+
+goos: windows
+goarch: amd64
+pkg: HW-pt1/internal/pkg/storage
+cpu: 11th Gen Intel(R) Core(TM) i5-1155G7 @ 2.50GHz
+BenchmarkSetGet
+BenchmarkSetGet/5
+BenchmarkSetGet/5-8 	1000000000	         0.0000078 ns/op
+BenchmarkSetGet/10
+BenchmarkSetGet/10-8         	1000000000	         0.0000054 ns/op
+BenchmarkSetGet/100
+BenchmarkSetGet/100-8        	1000000000	         0.0000279 ns/op
+BenchmarkSetGet/1000
+BenchmarkSetGet/1000-8       	1000000000	         0.0003226 ns/op
+BenchmarkSetGet/10000
+BenchmarkSetGet/10000-8      	1000000000	         0.002977 ns/op
+BenchmarkSetGet/100000
+BenchmarkSetGet/100000-8     	1000000000	         0.02456 ns/op
+BenchmarkSetGet/1000000
+BenchmarkSetGet/1000000-8    	1000000000	         0.3663 ns/op
+PASS
