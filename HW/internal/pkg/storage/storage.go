@@ -7,14 +7,20 @@ import (
 
 type Value struct {
 	s    string
-	f    float64
+	i    int
 	kind string
 }
 
 type Storage struct {
 	storage map[string]Value
-	logger  *zap.Logger
+	Logger  *zap.Logger
 }
+
+const (
+	KindDigit   = "D"
+	KindString  = "S"
+	KindUnknown = ""
+)
 
 func InitStorage() (Storage, error) {
 	logger, err := zap.NewProduction()
@@ -22,32 +28,30 @@ func InitStorage() (Storage, error) {
 		return Storage{}, err
 	}
 	defer logger.Sync()
-	logger.Info("storage initialized")
+	// logger.Info("storage initialized")
 	return Storage{
 		storage: make(map[string]Value),
-		logger:  logger,
+		Logger:  logger,
 	}, nil
 }
 
 func (storage Storage) Set(key, value string) {
-	defer storage.logger.Sync()
 	var val Value
 	val.s = value
-	if f, err := strconv.ParseFloat(value, 64); err == nil {
-		val.f = f
-		val.kind = "D"
+	if i, err := strconv.Atoi(value); err == nil {
+		val.i = i
+		val.kind = KindDigit
 	} else {
-		val.kind = "S"
+		val.kind = KindString
 	}
 
 	storage.storage[key] = val
-	storage.logger.Info("Set key value")
+	// storage.Logger.Info("Set key value")
 }
 
 func (storage Storage) Get(key string) *string {
-	defer storage.logger.Sync()
 	out, ok := storage.storage[key]
-	storage.logger.Info("Get key value")
+	// storage.Logger.Info("Get key value")
 	if ok {
 		return &out.s
 	}
@@ -55,11 +59,19 @@ func (storage Storage) Get(key string) *string {
 }
 
 func (storage Storage) GetKind(key string) string {
-	defer storage.logger.Sync()
+
 	out, ok := storage.storage[key]
-	storage.logger.Info("Get kind key value")
+	// storage.Logger.Info("Get kind key value")
 	if !ok {
-		return "N"
+		return KindUnknown
 	}
 	return out.kind
+}
+
+func (storage Storage) getTest(key string) Value {
+	out, ok := storage.storage[key]
+	if !ok {
+		return Value{}
+	}
+	return out
 }

@@ -29,11 +29,12 @@ func main() {
 	fmt.Println("")
 
 	store.Set("int", "12345")
-	store.Set("float64", "1234.123456789")
+	//store.Set("float64", "1234.123456789")
 
-	fmt.Println(*store.Get("int"))     // 12345
-	fmt.Println(*store.Get("float64")) // 1234.123456789
+	fmt.Println(*store.Get("int")) // 12345
+	//fmt.Println(*store.Get("float64")) // 1234.123456789
 
-	fmt.Println(store.GetKind("int"))     // D
-	fmt.Println(store.GetKind("float64")) // D
+	fmt.Println(store.GetKind("int")) // D
+	//fmt.Println(store.GetKind("float64")) // D
+	store.Logger.Sync()
 }
